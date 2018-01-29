@@ -1,12 +1,13 @@
 # -*- coding:utf-8 -*-
+import json
+
 from flask import current_app
 from requests import request
-import json
 
 
 class BDMap(object):
     def __init__(self):
-        self.ak =  current_app.config['AK']
+        self.ak = current_app.config['AK']
 
     def get_dot(self, place):
         """

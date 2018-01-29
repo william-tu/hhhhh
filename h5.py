@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, jsonify, current_app
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask_sqlalchemy import SQLAlchemy
-from responses import not_found,bad_request
-from config import Config
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+
 from bdmap import BDMap
+from config import Config
+from responses import not_found, bad_request
 
 app = Flask(__name__)
 
@@ -49,7 +50,6 @@ def token(t):
         data = s.loads(t)
     except Exception:
         return not_found('url not found')
-    print data
     u = User.query.filter_by(id=data.get('token')).first()
     if not u:
         return not_found('user not found')
@@ -59,7 +59,6 @@ def token(t):
         u.price = 0
     db.session.add(u)
     db.session.commit()
-    print u.name
     return jsonify({
         'data': 'successful'
     })
