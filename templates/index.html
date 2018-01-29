@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" placeholder="姓名" id="name">
+<input type="text" placeholder="始发地" id="fr">
+<input type="text" placeholder="目的地" id="to">
+<input type="button" id="d">
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('#d').click(function (event) {
+        $.ajax({
+            url:'http://' + document.domain + ':' + location.port + '/user',
+            method:'post',
+            data:{
+                name:$('#name').val(),
+                from:$('#fr').val(),
+                to:$('#to').val()
+            },
+            dataType:'json',
+            success:function (res) {
+                console.log(res);
+            }
+
+        })
+    })
+</script>
+</html>
