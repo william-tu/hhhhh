@@ -7,7 +7,7 @@ from requests import request
 
 class BDMap(object):
     def __init__(self):
-        self.ak = current_app.config['AK']
+        self.ak = 'jEWGp1H7LcHPmq1pPnpKXZMoNyOd0E7D' # current_app.config['AK']
 
     def get_dot(self, place):
         """
@@ -28,17 +28,15 @@ class BDMap(object):
         return con['result']['location']['lat'], con['result']['location']['lng'] if con['status'] == 0 else (
         None, None)
 
-    def get_distance(self, fr, to):
+    def get_distance(self, fr, to='衡阳'):
         """
         计算两地距离
         :param fr: 出发地
-        :param to: 目的地
+        :param to: 目的地 默认衡阳
         :return: 距离 or False if exception
         """
         fr_lat, fr_lng = self.get_dot(fr)
         to_lat, to_lng = self.get_dot(to)
-        print fr_lat,fr_lng
-        print to_lat, to_lng
         if not fr_lat or not to_lat:
             return False
 
@@ -52,4 +50,4 @@ class BDMap(object):
 
 
 if __name__ == '__main__':
-    print BDMap().get_distance('南昌', '北京')
+    print BDMap().get_distance('南昌')

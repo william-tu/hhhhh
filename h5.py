@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, current_app
+from flask import Flask, render_template, request, jsonify, current_app, session
 from flask_sqlalchemy import SQLAlchemy
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
@@ -21,15 +21,13 @@ def hello_world():
 def user():
     name = request.form['name']
     f = request.form['from']
-    t = request.form['to']
-    if not name or not f or not t:
+    if not name or not f:
         return bad_request('params error')
     u = User.query.filter_by(name=name).first()
     if not u:
         u = User(name=name)
         u.fr = f
-        u.to = t
-        u.distance = BDMap().get_distance(f, t)
+        u.distance = BDMap().get_distance(f)
         if u.distance:
             u.price = u.distance
         db.session.add(u)
