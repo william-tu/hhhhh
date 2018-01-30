@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, jsonify, current_app, session
+# -*- coding:utf-8 -*-
+from flask import Flask, render_template, request, jsonify, current_app, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
@@ -13,7 +14,7 @@ db = SQLAlchemy(app)
 
 
 @app.route('/')
-def hello_world():
+def index():
     return render_template('index.html')
 
 
@@ -37,7 +38,8 @@ def user():
     return jsonify({
         'price': u.price,
         'share_url': '/token/' + u.token,
-        'distance': u.distance
+        'distance': u.distance,
+        'all_user': User.count_user()
     })
 
 
@@ -57,9 +59,8 @@ def token(t):
         u.price = 0
     db.session.add(u)
     db.session.commit()
-    return jsonify({
-        'data': 'successful'
-    })
+    flash(u"为好友砍价成功")
+    return redirect(url_for('.index'))
 
 
 class User(db.Model):
@@ -77,6 +78,10 @@ class User(db.Model):
         self.token=s.dumps({'token': self.id})
         db.session.add(self)
         db.session.commit()
+
+    @staticmethod
+    def count_user():
+        return len(User.query.all())
 
     def __repr__(self):
         return '<user %r>' % self.name
