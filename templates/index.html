@@ -1,32 +1,325 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" href="/static/css/index.css">
+  <link rel="stylesheet" href="/static/css/zepto.fullpage.css">
+  <link rel="stylesheet" href="/static/css/animate.css">
+  <title>demo</title>
 </head>
 <body>
-<input type="text" placeholder="姓名" id="name">
-<input type="text" placeholder="始发地" id="fr">
-<input type="text" placeholder="目的地" id="to">
-<input type="button" id="d">
-</body>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <div id="music" class="music">
+      <a class="music-btn"></a>
+  </div>
+  <div class="wp">
+    <div class="wp-inner">
+        <div class="page page-1">
+          <div class="item item-1" data-animate="fadeIn">
+            <div class="logo-big js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/01/上面logo.png" alt="" width="40%">
+            </div>
+            <div class="title js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/01/biaoti.png" alt="" width="70%">
+            </div>
+            <div class="subtitle js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/01/标题小字.png" alt="" width="50%">
+            </div>
+            <div class="sstitle js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/gongyong/小字.png" alt="" width="50%">
+            </div>
+            <div class="logo-s js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/01/下面小logo.png" alt="" width="20%">
+            </div>
+            <div class="subtext js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/01/下面小字.png" alt="" width="80%">
+            </div>
+          </div>
+        </div>
+        <div class="page page-2">
+          <div class="item item-2 js-animate animated" data-animate="fadeIn">
+          <div class="title js-animate animated" data-animate="fadeInRight">
+            <img src="/static/images/02/biaoti.png" alt="" width="32%">
+            <img src="/static/images/02/xiaozi.png" alt="" width="30%">
+          </div>
+          <!-- <div class="subtitle js-animate animated" data-animate="fadeInRight">
+              
+          </div> -->
+          <!-- <div class="sstitle js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/gongyong/小字.png" alt="" width="50%">
+          </div> -->
+          </div>
+        </div>
+        <div class="page page-3">
+          <div class="item item-3 js-animate animated" data-animate="fadeIn">
+            <div class="title js-animate animated" data-animate="fadeInRight">
+              <img src="/static/images/03/biaoti.png" alt="" width="32%">
+              <img src="/static/images/03/xiaozi.png" alt="" width="30%">
+            </div>
+            <!-- <div class="subtitle js-animate animated" data-animate="fadeInRight">
+                
+            </div> -->
+            <!-- <div class="sstitle js-animate animated" data-animate="fadeInUp">
+                <img src="/static/images/gongyong/小字.png" alt="" width="50%">
+            </div> -->
+          </div>
+        </div>
+        <div class="page page-4">
+          <div class="item item-4 js-animate animated" data-animate="fadeIn">
+          <div class="subtitle js-animate animated" data-animate="fadeInUp">
+            <img src="/static/images/04/xiaozi.png" alt="" width="50%">
+          </div>
+          <!-- <div class="hr">
+              <img src="/static/images/gongyong/分割线.png" alt="" width="70%">
+          </div> -->
+          <div class="title js-animate animated" data-animate="fadeInUp">
+            <img src="/static/images/04/biaoti.png" alt="" width="70%">
+          </div>
+          <div class="sstitle js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/gongyong/小字.png" alt="" width="50%">
+          </div>
+          </div>
+        </div>
+        <div class="page page-5">
+          <div class="item item-5 js-animate animated" data-animate="fadeIn">
+            <div class="title js-animate animated" data-animate="fadeInUp">
+                <img src="/static/images/05/biaoti.png" alt="" width="60%">
+              </div>
+              <!-- <div class="hr">
+                  <img src="/static/images/gongyong/分割线.png" alt="" width="70%">
+              </div> -->
+              <div class="subtitle js-animate animated" data-animate="fadeInUp">
+                <img src="/static/images/05/xiaozi.png" alt="" width="50%">
+              </div>
+              <div class="sstitle js-animate animated" data-animate="fadeInUp">
+                  <img src="/static/images/gongyong/小字.png" alt="" width="50%">
+              </div>
+          </div>
+        </div>
+        <div class="page page-6">
+          <div class="item item-6 js-animate animated" data-animate="fadeIn">
+            <div class="subtitle js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/06/xiaozi.png" alt="" width="50%">
+            </div>
+            <div class="hr">
+              <img src="/static/images/gongyong/分割线.png" alt="" width="70%">
+            </div>
+            <div class="title js-animate animated" data-animate="fadeInUp">
+            <img src="/static/images/06/biaoti.png" alt="" width="70%">
+            </div>
+    
+            <div class="kuang js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/06/方框.png" alt="" width="50%">
+            </div>
+          </div>
+        </div>
+        <div class="page page-6-h">
+          <div class="item item-6-h js-animate animated" data-animate="fadeIn">
+            <div class="js-animate animated" data-animate="">
+                <img src="/static/images/06-h/biaoti.png" alt="" width="100%">
+            </div>
+            <div class="js-animate animated" data-animate="fadeInUp" style="margin-bottom: 20px;">
+                <img src="/static/images/06-h/guizebiaoti.png" alt="" width="80%">
+            </div>
+            <div class="js-animate animated" data-animate="fadeInUp" style="margin-bottom: 0px;">
+                <img src="/static/images/06-h/guize.png" alt="" width="80%">
+            </div>
+            <div class="js-animate animated" data-animate="fadeInUp">
+                <img src="/static/images/06-h/biaoge.png" alt="" width="50%">
+            </div>
+          </div>
+        </div>
+        <div class="page page-7">
+          <div class="item item-7 js-animate animated" data-animate="fadeIn">
+            <div class="title js-animate animated" data-animate="fadeInUp">
+            <!-- <img src="/static/images/07/biaoti.png" alt="" width="70%">
+            <div>10</div> -->
+            距离过年还有 <span>10</span> 天
+            </div>
+            <div class="hr">
+              <img src="/static/images/gongyong/分割线.png" alt="" width="70%">
+            </div>
+            <div class="subtitle js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/07/xiaozi.png" alt="" width="50%">
+            </div>
+          </div>
+        </div>
+        <div class="page page-8">
+          <div class="item item-8 js-animate animated" data-animate="fadeIn">
+            <div class="huoche">
+              <!-- <img src="/static/images/08/HENGYANG.png" alt="" width="95%"> -->
+              <div class="dizhi">
+                <span>远方</span>
+                <br>
+                DIDIAN
+              </div>
+              <div class="name">xxx</div>
+            </div>
+            <div class="title js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/08/biaoti.png" alt="" width="60%">
+            </div>
+            <div class="input">
+              <input type="text" name="name" id="name" placeholder="请填写姓名" required><br><br>
+              <select id="sheng">
+                  <option>请选择</option>
+                  
+              </select>
+              <select id="didian">
+                  <option>请选择</option>
+                  
+              </select>
+              <!-- <input type="text" name="didian" id="didian" placeholder="请填写出发地" required><br><br> -->
+              <!-- <button id="tijiao" class="js-animate animated infinite" data-animate="fadeInDown">v</button> -->
+              <img id="tijiao" src="/static/images/08/next.png" alt="" width="60%" style="margin-top: 30px;">
+            </div>
+          </div>
+        </div>
+        <div class="page page-9">
+          <div class="item item-9 js-animate animated" data-animate="fadeIn">
+            <div>
+              <div class="icon-position js-animate animated" data-animate="fadeIn">
+                <img src="/static/images/09/zuobiao.png" alt="" width="10%">
+              </div>
+              <div class="icon-quanquan js-animate animated" data-animate="fadeIn">
+                <img src="/static/images/09/quanquan.png" alt="" width="60%">
+              </div>
+            </div>
+            <div class="zhongjian">
+              <div class="biaoti js-animate animated" data-animate="fadeInLeft">
+                <img src="/static/images/09/biaoti.png" alt="" width="50%">
+              </div>
+              <div class="fenge js-animate animated" data-animate="fadeInDown">
+                <img src="/static/images/09/dian.png" alt="" width="0.5%" height="100%">
+              </div>
+              <div class="xiaozi js-animate animated" data-animate="fadeInRight">
+                <!-- <img src="/static/images/09/xiaozi.png" alt="" width="60%"> -->
+                距离<span class="one">10</span> 公里 &nbsp;有 <span class="two">222</span> 位与您同行
+              </div>
+            </div>
+            <div>
+              <div class="icon-home js-animate animated" data-animate="fadeIn">
+                 <img src="/static/images/09/home.png" alt="" width="10%">
+              </div>
+              <div class="icon-quanquan js-animate animated" data-animate="fadeIn">
+                <img src="/static/images/09/quanquan.png" alt="" width="60%">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page page-10">
+          <div class="item item-10 js-animate animated" data-animate="fadeIn">
+            <div class="logo js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/10/上面logo.png" alt="" width="40%">
+            </div>
+            <div class="huochepiao js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/10/huochepiao.png" alt="" width="60%">
+            </div>
+            <div class="process js-animate animated" data-animate="fadeInUp">
+              
+              <div class="process-bai"></div>
+              <div class="process-huang"></div>
+              <div class="process-kuang" style="margin-left:25%">
+                <span class="one">&nbsp;现价240元</span>
+                <img src="/static/images/10/kuang.png" alt="" width="60%"><br>
+                <img src="/static/images/10/quan.png" alt="" width="20%">
+              </div>
+              <div class="num">
+                <span class="num1">0%</span>
+                <span class="num2">100%</span>
+              </div>
+            </div>
+            <div class="button js-animate animated" data-animate="fadeInUp">
+              <img id="lingqu" src="/static/images/10/按钮1.png" alt="" width="60%">
+              <img id="kanjia" src="/static/images/10/按钮2.png" alt="" width="60%">
+            </div>
+            <div class="logo-s js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/10/xiamian.png" alt="" width="80%">
+            </div>
+            <div class="motai" style="display: none;">
+              <div class="banmian" >
+                <p>请将您的专属砍价链接复制到微信朋友圈</p>
+                <!-- <input type="text" value=""> -->
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <p class="guan">关闭</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<script src="/static/js/zepto.min.js"></script>
+<script src="/static/js/zepto.fullpage.js"></script>
+<script src="/static/js/index.js"></script>
 <script>
-    $('#d').click(function (event) {
-        $.ajax({
-            url:'http://' + document.domain + ':' + location.port + '/user',
-            method:'post',
-            data:{
-                name:$('#name').val(),
-                from:$('#fr').val(),
-                to:$('#to').val()
-            },
-            dataType:'json',
-            success:function (res) {
-                console.log(res);
-            }
-
-        })
-    })
+  $('.wp-inner').fullpage({
+    duration: 100,
+    change: function (e) {
+      // 移除动画属性
+      $('.page').eq(e.cur).find('.js-animate').each(function() {
+          $(this).removeClass($(this).data('animate')).hide();
+      });
+    },
+    afterChange: function (e) {
+      // 添加动画属性
+      $('.page').eq(e.cur).find('.js-animate').each(function () {
+          $(this).addClass($(this).data('animate')).show();
+      });
+      // console.log(e.cur)
+      // 火车票那页不允许滑动
+      if(e.cur == 8) $.fn.fullpage.stop();
+      if(e.cur == 9) $.fn.fullpage.start();
+    }
+  });
 </script>
-</html>
+<script>
+    var bgAudio = new Audio();
+    bgAudio.loadStatus = 'unload';
+    bgAudio.loop = true;
+    function loadAudio(audio, url, callback) {
+        audio.src = url;
+        audio.load();
+        audio.addEventListener('canplay', function () {
+            bgAudio.loadStatus = 'loaded';
+            callback();
+        });
+        audio.addEventListener('loadstart', function () {
+            bgAudio.loadStatus = 'loading';
+        });
+    }
+    function playAudio(){
+        if (bgAudio.loadStatus === 'unload') {
+            loadAudio(bgAudio, '/static/media/bg.mp3', function () {
+                playAudio();
+            });
+            return 1;
+        }
+        bgAudio.play();
+    }
+    function stopAudio() {
+        bgAudio.pause();
+    }
+    bgAudio.addEventListener('playing' ,function (e) {
+        $('#music .music-btn').addClass('play');
+    });
+    bgAudio.addEventListener('pause' ,function (e) {
+        $('#music .music-btn').removeClass('play');
+    });
+    $('body').one('touchstart', function () {
+        playAudio();
+        $('#music').on('touchstart', function (e) {
+            if (bgAudio.paused) {
+                playAudio();
+                return 0;
+            }
+            stopAudio();
+            return 1;
+        });
+    });
+    window.onload = function() {
+        if (bgAudio.loadStatus !== 'unload') {return;}
+        playAudio();
+    };
+</script>
+</body>
+<body>

@@ -16,4 +16,6 @@ SQLAlchemy==1.2.2
 urllib3==1.22
 Werkzeug==0.14.1
 wheel==0.30.0
+flask-cors==3.0.3
+
 

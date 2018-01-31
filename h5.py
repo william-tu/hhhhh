@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
-from flask import Flask, render_template, request, jsonify, current_app, flash, redirect, url_for
+from flask import Flask, render_template, request, jsonify, current_app, flash, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 from bdmap import BDMap
@@ -11,6 +12,7 @@ app = Flask(__name__)
 
 app.config.from_object(Config)
 db = SQLAlchemy(app)
+CORS(app)
 
 
 @app.route('/')
@@ -45,6 +47,10 @@ def user():
 
 @app.route('/token/<string:t>')
 def token(t):
+    if session.get('has_click', None):
+        flash(u"您已经为好友砍价过了")
+        return redirect(url_for('.index'))
+    session['has_click'] = 1
     s = Serializer(current_app.config['SECRET_KEY'])
     try:
         data = s.loads(t)
