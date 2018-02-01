@@ -36,7 +36,13 @@ def user():
         db.session.add(u)
         db.session.commit()
         u.generate_token()
-
+    elif u.fr != f:
+        u.fr = f
+        u.distance = BDMap().get_distance(f)
+        if u.distance:
+            u.price = u.distance
+        db.session.add(u)
+        db.session.commit()
     return jsonify({
         'price': u.price,
         'share_url': '/token/' + u.token,
@@ -74,7 +80,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=True, index=True)
     fr = db.Column(db.String(200))
-    to = db.Column(db.String(200))
+    to = db.Column(db.String(200), default=u'衡阳')
     price = db.Column(db.Integer, default=0)
     distance = db.Column(db.Integer, default=0)
     token = db.Column(db.String(200))
