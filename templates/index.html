@@ -321,5 +321,11 @@
         playAudio();
     };
 </script>
+{% for message in get_flashed_messages() %}
+    <script type="text/javascript">
+        var messages='{{ message }}';
+        alert(messages);
+    </script>
+{% endfor %}
 </body>
 <body>

@@ -8,7 +8,7 @@ $('#tijiao').on('click', function(){
   }
   $.ajax({
     type: 'POST',
-    url: 'http://' + document.domain + ':' + location.port + '/user',
+    url:  'http://' + document.domain + ':' + location.port + '/user',
     // data to be added to query string:
     data: { 
       name: $('#name').val(),
