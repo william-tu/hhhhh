@@ -8,7 +8,7 @@ $('#tijiao').on('click', function(){
   }
   $.ajax({
     type: 'POST',
-    url:  'http://' + document.domain + ':' + location.port + '/user',
+    url: 'http://localhost:5000/user',
     // data to be added to query string:
     data: { 
       name: $('#name').val(),
@@ -31,7 +31,7 @@ $('#tijiao').on('click', function(){
     },
     error: function(xhr, type){
       console.log('Ajax error!');
-      alert('网络不好，请刷新重试');
+      alert('网络状况不好，请刷新重试');
     },
   })
 });
@@ -83,15 +83,18 @@ $('#lingqu').on('click', function() {
   // else alert('您的火车票还没砍至0元，快邀请小红包来帮忙吧！');
 });
 
-$('#kanjia, .page-10 .banmian .guan').on('click', function() {
-  $('.page-10 .motai').toggle()
+$('#kanjia').on('click', function() {
+  // $('.page-10 .motai').toggle()
+  var url = 'http://' + location.host + userobj.share_url;
+  location.href = url;
 })
 
 // 设置距离时间
 var nowTime = new Date();
-var chunjie = new Date(2018, 02, 16);
-// var tianshu = Math.floor(chunjie - nowTime/(24*3600*1000));
-$('.page-7 span').text(Math.floor((chunjie.getTime() - nowTime.getTime())/(24*3600*1000)))
+var chunjie = new Date("2018/2/17 00:00:00");
+var dateDiff = chunjie - nowTime;
+var tianshu = Math.floor(dateDiff / (24 * 3600 * 1000));
+$('.page-7 span').text(tianshu);
 
 
 

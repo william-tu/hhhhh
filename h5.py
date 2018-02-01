@@ -51,17 +51,18 @@ def user():
     })
 
 
-@app.route('/token/<string:t>')
+@app.route('/token/<string:t>', methods=['GET', 'POST'])
 def token(t):
-    if session.get('has_click', None):
-        flash(u"您已经为好友砍价过了")
-        return redirect(url_for('.index'))
-    session['has_click'] = 1
     s = Serializer(current_app.config['SECRET_KEY'])
     try:
         data = s.loads(t)
     except Exception:
         return not_found('url not found')
+    print session.get('has_click_for_user')
+    if session.get('has_click_for_user', -1) == data.get('token'):
+        flash(u'你已经为该用户砍价过了')
+        return render_template('share.html')
+    session['has_click_for_user'] = data.get('token')
     u = User.query.filter_by(id=data.get('token')).first()
     if not u:
         return not_found('user not found')
@@ -71,8 +72,7 @@ def token(t):
         u.price = 0
     db.session.add(u)
     db.session.commit()
-    flash(u"为好友砍价成功")
-    return redirect(url_for('.index'))
+    return render_template('share.html')
 
 
 class User(db.Model):
