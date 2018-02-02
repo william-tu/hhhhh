@@ -62,13 +62,13 @@ def user():
         db.session.commit()
     return jsonify({
         'price': u.price,
-        'share_url': '/token/' + u.token,
+        'share_url': '/' + u.token,
         'distance': u.distance,
         'all_user': User.count_user()
     })
 
 
-@app.route('/token/<string:t>', methods=['GET', 'POST'])
+@app.route('/<string:t>', methods=['GET', 'POST'])
 def token(t):
     s = Serializer(current_app.config['SECRET_KEY'])
     try:
