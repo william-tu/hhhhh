@@ -13,11 +13,13 @@ $('#tijiao').on('click', function(){
   $.ajax({
     type: 'POST',
     url: 'http://william-tu.cn/user',
+    // contentType: 'application/json',
     // data to be added to query string:
     data: { 
       name: $('#name').val(),
       from: $('#didian').val()
     },
+    
     // type of data we are expecting in return:
     dataType: 'json',
     success: function(data){
@@ -95,7 +97,9 @@ $('#kanjia').on('click', function() {
   // location.href = url;
   var shareData = {
     appId: sign.app_id,
-		signature: sign.sign,
+    signature: sign.sign,
+    // timestamp: sign.timestamp,
+    // nonceStr: sign.nonceStr,
     title: '衡阳市华耀碧桂园十里江湾营销中心',
     desc: '衡阳市华耀碧桂园十里江湾营销中心邀您领取0元火车票',
     link: 'http://' + location.host + userobj.share_url,
@@ -161,7 +165,7 @@ var wechat = {
     // var signature = config.signature;
 
     wx.config({
-      debug: false,
+      debug: true,
       appId: config.appId,
       timestamp: config.timestamp,
       nonceStr: config.nonceStr,
@@ -177,19 +181,26 @@ var wechat = {
   }
 }
 //时间戳 签名用
-var timestamp = (new Date()).valueOf();
+var timestamp = parseInt(new Date().getTime() / 1000) + '';
 //随机字符串  签名用
-var random_str = wechat.getRandomString(12);
+var random_str = Math.random().toString(36).substr(2, 15);;
 
 // 获取id，sign
 
 $.ajax({
-  url: 'http://william-tu.cn//sign',
-  type: 'GET',
+  url: 'http://william-tu.cn/sign',
+  type: 'POST',
+  data: JSON.stringify({
+    'url': location.href,
+    'timestamp': timestamp,
+    'nonce_str': random_str,
+  }),
+  contentType: 'application/json',
   dataType: 'json',
   success: function(data){
-    sign.app_id = data.app_id;
-    sign.sign = data.sign;
+    // sign.app_id = data.app_id;
+    // sign.sign = data.sign;
+    sign = data
   },
   error: function(data){
     alert('网络状况不好，请刷新重试');
