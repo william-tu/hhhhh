@@ -105,7 +105,7 @@ $('#kanjia').on('click', function() {
     title: '衡阳市华耀碧桂园十里江湾营销中心',
     desc: '衡阳市华耀碧桂园十里江湾营销中心邀您领取0元火车票',
     link: 'http://' + location.host + userobj.share_url,
-    imgUrl: 'http://' + location.host + '/images/01/01.jpg',
+    imgUrl: 'http://' + location.host + '/static/images/01/01.jpg',
   };
   wechat.wechatShare(shareData);
 })
