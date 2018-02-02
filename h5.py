@@ -158,7 +158,7 @@ class Sign(object):
         self.timestamp = timestamp
         self.ret = {
             'nonceStr': self.nonce_str,
-            'jsapi_ticket': self.get_jsapi(),
+            'jsapi_ticket': get_jsapi(),
             'timestamp': self.timestamp,
             'url': url,
 
