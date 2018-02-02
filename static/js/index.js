@@ -12,7 +12,7 @@ $('#tijiao').on('click', function(){
   }
   $.ajax({
     type: 'POST',
-    url: 'http://localhost:5000/user',
+    url: 'http://william-tu.cn/user',
     // data to be added to query string:
     data: { 
       name: $('#name').val(),
