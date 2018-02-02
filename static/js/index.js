@@ -87,6 +87,8 @@ $('#lingqu').on('click', function() {
   // else alert('您的火车票还没砍至0元，快邀请小红包来帮忙吧！');
 });
 
+// 分享事件
+
 $('#kanjia').on('click', function() {
   $('.page-10 .motai').toggle();
   // var url = 'http://' + location.host + userobj.share_url;
@@ -94,10 +96,10 @@ $('#kanjia').on('click', function() {
   var shareData = {
     appId: sign.app_id,
 		signature: sign.sign,
-    title: 'test',
-    desc: '简介',
+    title: '衡阳市华耀碧桂园十里江湾营销中心',
+    desc: '衡阳市华耀碧桂园十里江湾营销中心邀您领取0元火车票',
     link: 'http://' + location.host + userobj.share_url,
-    imgUrl: 'imgurl',
+    imgUrl: 'http://' + location.host + '/static/images/01/01.jpg',
   };
   wechat.wechatShare(shareData);
 })
