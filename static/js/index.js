@@ -1,6 +1,10 @@
+// 签名
+var sign = {};
+// 获得全部城市
+var cityobj = null;
 
-var userobj = null;
 // 获得距离啥的
+var userobj = null;
 $('#tijiao').on('click', function(){
   if($('#name').val() == '' && $('#didian').val() == '') {
     alert('请填写信息');
@@ -8,7 +12,7 @@ $('#tijiao').on('click', function(){
   }
   $.ajax({
     type: 'POST',
-    url: 'http://' + document.domain + ':' + location.port + '/user',
+    url: 'http://william-tu.cn/user',
     // data to be added to query string:
     data: { 
       name: $('#name').val(),
@@ -34,11 +38,10 @@ $('#tijiao').on('click', function(){
       alert('网络状况不好，请刷新重试');
     },
   })
-
 });
 
 // 获得全部城市
-var cityobj = null;
+// var cityobj = null;
 $.ajax({
   type: 'GET',
   url: '/static/media/citys.txt',
@@ -84,10 +87,23 @@ $('#lingqu').on('click', function() {
   // else alert('您的火车票还没砍至0元，快邀请小红包来帮忙吧！');
 });
 
-$('#kanjia, .guan').on('click', function() {
-  $('.page-10 .motai').toggle()
+$('#kanjia').on('click', function() {
+  $('.page-10 .motai').toggle();
   // var url = 'http://' + location.host + userobj.share_url;
   // location.href = url;
+  var shareData = {
+    appId: sign.app_id,
+		signature: sign.sign,
+    title: 'test',
+    desc: '简介',
+    link: 'http://' + location.host + userobj.share_url,
+    imgUrl: 'imgurl',
+  };
+  wechat.wechatShare(shareData);
+})
+
+$('.guan').on('click', function() {
+  $('.page-10 .motai').toggle();
 })
 
 // 设置距离时间
@@ -96,6 +112,87 @@ var chunjie = new Date("2018/2/17 00:00:00");
 var dateDiff = chunjie - nowTime;
 var tianshu = Math.floor(dateDiff / (24 * 3600 * 1000));
 $('.page-7 span').text(tianshu);
+
+// 微信分享
+var wechat = {
+  // 获取长度为len的随机字符串
+  getRandomString: function (len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'; // 默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1
+    var maxPos = $chars.length;
+    var pwd = '';
+    for (i = 0; i < len; i++) {
+        pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return pwd;
+  },
+  wechatConfig: function (config) {
+    wx.config({
+        debug: false,
+        appId: config.appId,
+        timestamp: config.timestamp,
+        nonceStr: config.nonceStr,
+        signature: config.signature,
+        jsApiList: config.jsApiList
+    });
+  },
+  wechatShare: function ($shareData) {
+    var _default = {   
+        debug: false,
+        timestamp: timestamp,
+        nonceStr: random_str,
+        jsApiList: [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo'
+        ]
+    };
+
+    var config = $.extend(_default, $shareData);
+
+    // var appId = config.appId;
+    // var appSecret = config.appSecret;
+    // var accessToken = config.accessToken;
+    // var ticket = config.ticket;
+    // var signature = config.signature;
+
+    wx.config({
+      debug: false,
+      appId: config.appId,
+      timestamp: config.timestamp,
+      nonceStr: config.nonceStr,
+      signature: config.signature,
+      jsApiList: config.jsApiList
+    });
+    wx.ready(function () {
+      wx.onMenuShareAppMessage($shareData);
+      wx.onMenuShareTimeline($shareData);
+      wx.onMenuShareQQ($shareData);
+      wx.onMenuShareWeibo($shareData);
+    });
+  }
+}
+//时间戳 签名用
+var timestamp = (new Date()).valueOf();
+//随机字符串  签名用
+var random_str = wechat.getRandomString(12);
+
+// 获取id，sign
+
+$.ajax({
+  url: 'http://william-tu.cn//sign',
+  type: 'GET',
+  dataType: 'json',
+  success: function(data){
+    sign.app_id = data.app_id;
+    sign.sign = data.sign;
+  },
+  error: function(data){
+    alert('网络状况不好，请刷新重试');
+  },
+})
 
 
 

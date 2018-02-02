@@ -30,7 +30,7 @@ def index():
 
 @app.route('/sign', methods=['GET'])
 def s():
-    sign = Sign('http://localhost').sign()
+    sign = Sign('http://william-tu.cn/').sign()
     return jsonify({
         'app_id': current_app.config['WX_APP_ID'],
         'sign': sign.get('signature')
