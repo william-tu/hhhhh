@@ -139,7 +139,7 @@ class User(db.Model):
         return '<user %r>' % self.name
 
 
-@cache.cache(timeout=60*60, key_prefix='jsapi')
+@cache.cached(timeout=60*60, key_prefix='jsapi')
 def get_jsapi(self):
     res = requests.request('get',
                   'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(
