@@ -2,6 +2,8 @@
 var sign = {};
 // 获得全部城市
 var cityobj = null;
+// 分享数据
+var shareData = {};
 
 // 获得距离啥的
 var userobj = null;
@@ -95,7 +97,7 @@ $('#kanjia').on('click', function() {
   $('.page-10 .motai').toggle();
   // var url = 'http://' + location.host + userobj.share_url;
   // location.href = url;
-  var shareData = {
+  shareData = {
     appId: sign.app_id,
     signature: sign.sign,
     // timestamp: sign.timestamp,
@@ -103,7 +105,7 @@ $('#kanjia').on('click', function() {
     title: '衡阳市华耀碧桂园十里江湾营销中心',
     desc: '衡阳市华耀碧桂园十里江湾营销中心邀您领取0元火车票',
     link: 'http://' + location.host + userobj.share_url,
-    imgUrl: 'http://' + location.host + '/static/images/01/01.jpg',
+    imgUrl: 'http://' + location.host + '/images/01/01.jpg',
   };
   wechat.wechatShare(shareData);
 })
@@ -121,17 +123,6 @@ $('.page-7 span').text(tianshu);
 
 // 微信分享
 var wechat = {
-  // 获取长度为len的随机字符串
-  getRandomString: function (len) {
-    len = len || 32;
-    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'; // 默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1
-    var maxPos = $chars.length;
-    var pwd = '';
-    for (i = 0; i < len; i++) {
-        pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
-    }
-    return pwd;
-  },
   wechatConfig: function (config) {
     wx.config({
         debug: false,
@@ -157,15 +148,8 @@ var wechat = {
     };
 
     var config = $.extend(_default, $shareData);
-
-    // var appId = config.appId;
-    // var appSecret = config.appSecret;
-    // var accessToken = config.accessToken;
-    // var ticket = config.ticket;
-    // var signature = config.signature;
-
     wx.config({
-      debug: true,
+      debug: false,
       appId: config.appId,
       timestamp: config.timestamp,
       nonceStr: config.nonceStr,
@@ -201,6 +185,17 @@ $.ajax({
     // sign.app_id = data.app_id;
     // sign.sign = data.sign;
     sign = data
+    shareData = {
+      appId: sign.app_id,
+      signature: sign.sign,
+      timestamp: timestamp,
+      nonceStr: random_str,
+      title: '衡阳市华耀碧桂园十里江湾营销中心',
+      desc: '衡阳市华耀碧桂园十里江湾营销中心邀您领取0元火车票',
+      link: 'http://' + location.host,
+      imgUrl: 'http://' + location.host + '/static/images/01/01.jpg',
+    };
+    wechat.wechatConfig(shareData);
   },
   error: function(data){
     alert('网络状况不好，请刷新重试');
