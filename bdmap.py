@@ -7,7 +7,7 @@ from requests import request
 
 class BDMap(object):
     def __init__(self):
-        self.ak = 'jEWGp1H7LcHPmq1pPnpKXZMoNyOd0E7D' # current_app.config['AK']
+        self.ak = current_app.config['AK']
 
     def get_dot(self, place):
         """

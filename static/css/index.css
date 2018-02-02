@@ -128,11 +128,12 @@ body {
 .item-6 {
   margin-top: 6rem;
 }
-.item-6 .subtitle {
+.item-6 .subtitle,
+.item-6 .kuang {
   margin-bottom: 1rem;
 }
 .item-6 .title {
-  margin: 1rem 0 2rem 0;
+  margin: 1rem 0;
 }
 .item-7 {
   margin-top: 6rem;
@@ -191,7 +192,10 @@ body {
   border: 0;
   width: 60%;
   height: 34px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+}
+.item-8 .input select {
+  font-size: 1.2rem;
 }
 .item-9 {
   margin-top: 2rem;
@@ -285,6 +289,14 @@ body {
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.5);
+  background-image: url(/static/images/gongyong/share.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.item-10 .motai .guan {
+  height: 100%;
+  width: 100%;
 }
 .item-10 .motai .banmian {
   width: 80%;

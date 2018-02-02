@@ -3,17 +3,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/static/css/share.css">
+  <link rel="stylesheet" href="../css/share.css">
   <title>分享</title>
 </head>
 <body>
     <div class="page page-10">
         <div class="item item-10 js-animate animated" data-animate="fadeIn">
           <div class="logo js-animate animated" data-animate="fadeInUp">
-            <img src="/static/images/10/上面logo.png" alt="" width="40%">
+            <img src="../images/10/shangmianlogo.png" alt="" width="40%">
           </div>
           <div class="huochepiao js-animate animated" data-animate="fadeInUp">
-            <img src="/static/images/10/huochepiao.png" alt="" width="60%">
+            <img src="../images/10/huochepiao.png" alt="" width="60%">
           </div>
           <!-- <div class="process js-animate animated" data-animate="fadeInUp">
             
@@ -21,8 +21,8 @@
             <div class="process-huang"></div>
             <div class="process-kuang" style="margin-left:25%">
               <span class="one">&nbsp;现价240元</span>
-              <img src="/static/images/10/kuang.png" alt="" width="60%"><br>
-              <img src="/static/images/10/quan.png" alt="" width="20%">
+              <img src="../images/10/kuang.png" alt="" width="60%"><br>
+              <img src="../images/10/quan.png" alt="" width="20%">
             </div>
             <div class="num">
               <span class="num1">0%</span>
@@ -30,11 +30,11 @@
             </div>
           </div> -->
           <div class="button js-animate animated" data-animate="fadeInUp" style="margin-top: 7rem;">
-            <img id="lingqu" src="/static/images/10/按钮3.png" alt="" width="60%">
-            <!-- <img id="kanjia" src="/static/images/10/按钮2.png" alt="" width="60%"> -->
+            <img id="lingqu" src="../images/10/anniu3.png" alt="" width="60%">
+            <!-- <img id="kanjia" src="../images/10/按钮2.png" alt="" width="60%"> -->
           </div>
           <div class="logo-s js-animate animated" data-animate="fadeInUp">
-            <img src="/static/images/10/xiamian.png" alt="" width="80%">
+            <img src="../images/10/xiamian.png" alt="" width="80%">
           </div>
           <div class="motai">
             <!-- <div class="banmian" > -->
@@ -46,28 +46,12 @@
           </div>
         </div>
       </div>
-      <!-- <script src="/static/js/index.js"></script> -->
-      <script src="/static/js/zepto.min.js"></script>
+      <!-- <script src="../js/index.js"></script> -->
+      <script src="../js/zepto.min.js"></script>
       <script>
         $('.guan').on('click', function() {
           $('.page-10 .motai').toggle()
         })
-        alert('为好友砍价成功');
-        {#var clickTime = 0
-        $('#lingqu').on('click', function (e) {
-            if (clickTime === 0){
-            clickTime++;
-            alert('砍价成功');
-            }else{
-                alert('您已经为该用户砍价过了')
-            }
-    })#}
       </script>
-{% for message in get_flashed_messages() %}
-    <script type="text/javascript">
-        var messages='{{ message }}';
-        alert(messages);
-    </script>
-{% endfor %}
 </body>
 </html>
