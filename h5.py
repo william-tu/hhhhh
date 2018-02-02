@@ -70,18 +70,14 @@ def user():
 
 @app.route('/<string:t>', methods=['GET', 'POST'])
 def token(t):
-    s = Serializer(current_app.config['SECRET_KEY'])
-    try:
-        data = s.loads(t)
-    except Exception:
+    data = int(t)
+    u = User.query.filter_by(id=data).first()
+    if not u:
         return not_found('url not found')
-    if session.get('has_click_for_user_' + str(data.get('token')), -1) == data.get('token'):
+    if session.get('has_click_for_user_' + str(data), -1) == data:
         flash(u'你已经为该用户砍价过了')
         return redirect(url_for('.index'))
-    session['has_click_for_user_' + str(data.get('token'))] = data.get('token')
-    u = User.query.filter_by(id=data.get('token')).first()
-    if not u:
-        return not_found('user not found')
+    session['has_click_for_user_' + str(data)] = data
     if u.price > 10:
         u.price = u.price - 10
     else:
@@ -90,6 +86,26 @@ def token(t):
     db.session.commit()
     flash(u'为好友砍价成功')
     return redirect(url_for('.index'))
+    # s = Serializer(current_app.config['SECRET_KEY'])
+    # try:
+    #     data = s.loads(t)
+    # except Exception:
+    #     return not_found('url not found')
+    # if session.get('has_click_for_user_' + str(data.get('token')), -1) == data.get('token'):
+    #     flash(u'你已经为该用户砍价过了')
+    #     return redirect(url_for('.index'))
+    # session['has_click_for_user_' + str(data.get('token'))] = data.get('token')
+    # u = User.query.filter_by(id=data.get('token')).first()
+    # if not u:
+    #     return not_found('user not found')
+    # if u.price > 10:
+    #     u.price = u.price - 10
+    # else:
+    #     u.price = 0
+    # db.session.add(u)
+    # db.session.commit()
+    # flash(u'为好友砍价成功')
+    # return redirect(url_for('.index'))
 
 
 class User(db.Model):
@@ -103,8 +119,8 @@ class User(db.Model):
     token = db.Column(db.String(200))
 
     def generate_token(self):
-        s = Serializer(current_app.config['SECRET_KEY'], 60 * 60 * 24 * 365)
-        self.token = s.dumps({'token': self.id})
+        # s = Serializer(current_app.config['SECRET_KEY'], 60 * 60 * 24 * 365)
+        self.token = self.id # s.dumps({'token': self.id})
         db.session.add(self)
         db.session.commit()
 
@@ -156,4 +172,6 @@ class Sign(object):
 
 
 if __name__ == '__main__':
+    db.drop_all()
+    db.create_all()
     app.run(debug=True)
