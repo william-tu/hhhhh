@@ -28,9 +28,14 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/sign', methods=['GET'])
+@app.route('/sign', methods=['POST'])
 def s():
-    sign = Sign('http://william-tu.cn').sign()
+    url = request.json.get('url')
+    nonce_str = request.json.get('nonce_str')
+    timestamp = request.json.get('timestamp')
+    if not url or not nonce_str or not timestamp:
+        return bad_request('params less')
+    sign = Sign(url, nonce_str, timestamp).sign()
     return jsonify({
         'app_id': current_app.config['WX_APP_ID'],
         'sign': sign.get('signature')
@@ -132,33 +137,36 @@ class User(db.Model):
         return '<user %r>' % self.name
 
 
+@cache.memoize(timeout=60*60)
+def get_jsapi(self):
+    res = requests.request('get',
+                  'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(
+                      self.app_id,
+                      self.secret))
+    res = requests.request('GET', 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={}&type=jsapi'.format(
+        res.json().get('access_token')))
+    return res.json().get('ticket')
+
+
 class Sign(object):
-    def __init__(self, url):
+    def __init__(self, url, nonce_str, timestamp):
         self.app_id = current_app.config['WX_APP_ID']
         self.secret = current_app.config['WX_SECRET']
+        self.nonce_str = nonce_str
+        self.timestamp = timestamp
         self.ret = {
-            'nonceStr': self.__create_nonce_str(),
-            'jsapi_ticket': self.__get_jsapi(),
-            'timestamp': self.__create_timestamp(),
+            'nonceStr': self.nonce_str,
+            'jsapi_ticket': self.get_jsapi(),
+            'timestamp': self.timestamp,
             'url': url,
 
         }
 
-    def __create_nonce_str(self):
-        return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(15))
-
-    def __create_timestamp(self):
-        return int(time.time())
-
-    # @cache.memoize(timeout=60*60)
-    def __get_jsapi(self):
-        res = requests.request('get',
-                      'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(
-                          self.app_id,
-                          self.secret))
-        res = requests.request('GET', 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={}&type=jsapi'.format(
-            res.json().get('access_token')))
-        return res.json().get('ticket')
+    # def __create_nonce_str(self):
+    #     return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(15))
+    #
+    # def __create_timestamp(self):
+    #     return int(time.time())
 
     def sign(self):
         string = '&'.join(['%s=%s' % (key.lower(), self.ret[key]) for key in sorted(self.ret)])
