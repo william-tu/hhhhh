@@ -30,6 +30,8 @@ def index():
 
 @app.route('/sign', methods=['POST'])
 def s():
+    if not request.json:
+        return bad_request('need json instead others')
     url = request.json.get('url')
     nonce_str = request.json.get('nonce_str')
     timestamp = request.json.get('timestamp')
@@ -137,15 +139,15 @@ class User(db.Model):
         return '<user %r>' % self.name
 
 
-@cache.memoize(timeout=60*60)
-def get_jsapi(self):
-    res = requests.request('get',
-                  'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(
-                      self.app_id,
-                      self.secret))
-    res = requests.request('GET', 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={}&type=jsapi'.format(
-        res.json().get('access_token')))
-    return res.json().get('ticket')
+# @cache.memoize(timeout=60*60)
+# def get_jsapi(self):
+#     res = requests.request('get',
+#                   'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(
+#                       self.app_id,
+#                       self.secret))
+#     res = requests.request('GET', 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={}&type=jsapi'.format(
+#         res.json().get('access_token')))
+#     return res.json().get('ticket')
 
 
 class Sign(object):
