@@ -150,7 +150,7 @@ class Sign(object):
     def __create_timestamp(self):
         return int(time.time())
 
-    @cache.memoize(timeout=60*60)
+    # @cache.memoize(timeout=60*60)
     def __get_jsapi(self):
         res = requests.request('get',
                       'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(
@@ -165,10 +165,10 @@ class Sign(object):
         self.ret['signature'] = hashlib.sha1(string).hexdigest()
         return self.ret
 
-    def __new__(cls, *args, **kwargs):
-        if not hasattr(cls, '_instance'):
-            cls._instance = object.__new__(cls, *args, **kwargs)
-        return cls._instance
+    # def __new__(cls, *args, **kwargs):
+    #     if not hasattr(cls, '_instance'):
+    #         cls._instance = object.__new__(cls, *args, **kwargs)
+    #     return cls._instance
 
 
 if __name__ == '__main__':
