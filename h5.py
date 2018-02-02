@@ -140,11 +140,13 @@ class User(db.Model):
 
 
 @cache.cached(timeout=60*60, key_prefix='jsapi')
-def get_jsapi(self):
+def get_jsapi():
+    app_id = current_app.config['WX_APP_ID']
+    secret = current_app.config['WX_SECRET']
     res = requests.request('get',
                   'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(
-                      self.app_id,
-                      self.secret))
+                      app_id,
+                      secret))
     res = requests.request('GET', 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={}&type=jsapi'.format(
         res.json().get('access_token')))
     return res.json().get('ticket')
@@ -152,8 +154,6 @@ def get_jsapi(self):
 
 class Sign(object):
     def __init__(self, url, nonce_str, timestamp):
-        self.app_id = current_app.config['WX_APP_ID']
-        self.secret = current_app.config['WX_SECRET']
         self.nonce_str = nonce_str
         self.timestamp = timestamp
         self.ret = {
