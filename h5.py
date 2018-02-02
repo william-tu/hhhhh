@@ -150,7 +150,7 @@ class Sign(object):
     def __create_timestamp(self):
         return int(time.time())
 
-    @cache.memoize(timeout=60*60*2.5)
+    @cache.memoize(timeout=60*60)
     def __get_jsapi(self):
         res = requests.request('get',
                       'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(
