@@ -73,7 +73,7 @@ def user():
     })
 
 
-@app.route('/<string:t>', methods=['GET', 'POST'])
+@app.route('/<int:t>', methods=['GET', 'POST'])
 def token(t):
     data = int(t)
     u = User.query.filter_by(id=data).first()
