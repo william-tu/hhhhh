@@ -61,12 +61,13 @@ def user():
         db.session.commit()
         u.generate_token()
     elif u.fr != f:
-        u.fr = f
-        u.distance = BDMap().get_distance(f)
-        if u.distance:
-            u.price = u.distance
-        db.session.add(u)
-        db.session.commit()
+        return bad_request('not found user')
+        # u.fr = f
+        # u.distance = BDMap().get_distance(f)
+        # if u.distance:
+        #     u.price = u.distance
+        # db.session.add(u)
+        # db.session.commit()
     return jsonify({
         'price': u.price,
         'share_url': '/' + u.token,

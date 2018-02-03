@@ -151,8 +151,8 @@
           <div class="item item-8 js-animate animated" data-animate="fadeIn">
             <div class="huoche">
               <!-- <img src="/static/images/08/HENGYANG.png" alt="" width="95%"> -->
-              <div class="dizhi">
-                <span>远方</span>
+              <div class="dizhi" style="display: none;">
+               <!-- <span>远方</span>-->
                 <br>
                 DIDIAN
               </div>
@@ -255,12 +255,12 @@
 <script src="/static/js/zepto.fullpage.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="/static/js/index.js"></script>
-  <script type="text/javascript">
-        {% for message in get_flashed_messages() %}
+{% for message in get_flashed_messages() %}
+    <script type="text/javascript">
         var messages='{{ message }}';
         alert(messages);
-        {% endfor %}
     </script>
+{% endfor %}
 <script>
   $('.wp-inner').fullpage({
     duration: 100,
@@ -277,8 +277,17 @@
       });
       // console.log(e.cur)
       // 火车票那页不允许滑动
-      if(e.cur == 7) $.fn.fullpage.stop();
+      if(e.cur == 7) {
+        if(loadUser()){
+          $('#name').val(localStorage.name).attr('disabled', true);
+          $('#sheng').val(localStorage.sheng).attr('disabled', true).trigger('change');
+          $('#didian').val(localStorage.didian).attr('disabled', true);
+        }
+        $.fn.fullpage.stop();
+      };
+
       if(e.cur == 8) $.fn.fullpage.start();
+      // 最后一页不动
       if(e.cur == 9) $.fn.fullpage.stop();
     }
   });

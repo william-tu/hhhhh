@@ -12,6 +12,12 @@ $('#tijiao').on('click', function(){
     alert('请填写信息');
     return ;
   }
+  // 存储信息
+  saveUser({
+    didian: $('#didian').val(),
+    sheng: $('#sheng').val(),
+    name: $('#name').val()
+  })
   $.ajax({
     type: 'POST',
     url: 'http://william-tu.cn/user',
@@ -28,7 +34,7 @@ $('#tijiao').on('click', function(){
       // this.append(data.project.html)
       $('.page-9 .one').text(data.distance);
       $('.page-9 .two').text(data.all_user);
-      $('.page-10 .one').text('距离' + data.price + '公里');
+      $('.page-10 .one').text(data.price + '公里');
       $('.page-10 .banmian textarea').val(data.share_url);
 
       //设置进度条
@@ -39,7 +45,10 @@ $('#tijiao').on('click', function(){
     },
     error: function(xhr, type){
       console.log('Ajax error!');
-      alert('网络状况不好，请刷新重试');
+      alert('异常？可能有以下错误：' +
+          '1：网络状况不好，请刷新重试' +
+          '2：信息填写错误，请填写初始信息' +
+          '3：可能存在和您名字相同的用户，请您在名字后面加字母以解决');
     },
   })
 });
@@ -48,12 +57,12 @@ $('#tijiao').on('click', function(){
 // var cityobj = null;
 $.ajax({
   type: 'GET',
-  url: '/static/media/citys.txt',
+  url: '../media/citys.txt',
   dataType: 'json',
   contentType: "application/x-www-form-urlencoded; charset=utf-8",
   success: function(data){
     cityobj = data.provinces;
-    console.log(cityobj);
+    // console.log(cityobj);
     // for(var i of cityobj){
     //   $('#sheng')
     // }
@@ -105,7 +114,7 @@ $('#kanjia').on('click', function() {
     // title: '衡阳市华耀碧桂园十里江湾营销中心',
     // desc: '衡阳市华耀碧桂园十里江湾营销中心邀您领取0元火车票',
     link: 'http://' + location.host + userobj.share_url,
-    // imgUrl: 'http://' + location.host + '/static/images/01/01.jpg',
+    // imgUrl: 'http://' + location.host + '/images/01/01.jpg',
   };
   wechat.wechatShare(shareData);
 })
@@ -203,7 +212,18 @@ $.ajax({
   error: function(data){
     alert('网络状况不好，请刷新重试');
   },
-})
+});
 
+// 本地存储
+
+function saveUser(data) {
+  localStorage.name = data.name;
+  localStorage.didian = data.didian;
+  localStorage.sheng = data.sheng;
+}
+function loadUser() {
+  if(localStorage.name) return true;
+  else return false;
+}
 
 
