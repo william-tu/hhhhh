@@ -57,7 +57,7 @@ $('#tijiao').on('click', function(){
 // var cityobj = null;
 $.ajax({
   type: 'GET',
-  url: '../media/citys.txt',
+  url: '/static/media/citys.txt',
   dataType: 'json',
   contentType: "application/x-www-form-urlencoded; charset=utf-8",
   success: function(data){
