@@ -28,7 +28,7 @@ $('#tijiao').on('click', function(){
       // this.append(data.project.html)
       $('.page-9 .one').text(data.distance);
       $('.page-9 .two').text(data.all_user);
-      $('.page-10 .one').text('现价' + data.price + '元');
+      $('.page-10 .one').text('距离' + data.price + '公里');
       $('.page-10 .banmian textarea').val(data.share_url);
 
       //设置进度条
@@ -76,9 +76,9 @@ $('#sheng').on('change', function() {
   }
 })
 
-$('#didian, #sheng').on('change', function() {
-  $('.page-8 .dizhi span').text($('#didian').val());
-})
+// $('#didian, #sheng').on('change', function() {
+//   $('.page-8 .dizhi span').text($('#didian').val());
+// })
 
 $('#name').on('change', function() {
   $('.page-8 .huoche .name').text($('#name').val());
