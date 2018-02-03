@@ -116,7 +116,7 @@
             </div>
           </div>
         </div>
-        <div class="page page-6-h">
+        <!-- <div class="page page-6-h">
           <div class="item item-6-h js-animate animated" data-animate="fadeIn">
             <div class="js-animate animated" data-animate="">
                 <img src="/static/images/06-h/biaoti.png" alt="" width="100%">
@@ -131,7 +131,7 @@
                 <img src="/static/images/06-h/biaoge.png" alt="" width="50%">
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="page page-7">
           <div class="item item-7 js-animate animated" data-animate="fadeIn">
             <div class="title js-animate animated" data-animate="fadeInUp">
@@ -255,14 +255,6 @@
 <script src="/static/js/zepto.fullpage.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="/static/js/index.js"></script>
-
-    <script type="text/javascript">
-        {% for message in get_flashed_messages() %}
-        var messages='{{ message }}';
-        alert(messages);
-        {% endfor %}
-    </script>
-
 <script>
   $('.wp-inner').fullpage({
     duration: 100,
@@ -279,9 +271,9 @@
       });
       // console.log(e.cur)
       // 火车票那页不允许滑动
-      if(e.cur == 8) $.fn.fullpage.stop();
-      if(e.cur == 9) $.fn.fullpage.start();
-      if(e.cur == 10) $.fn.fullpage.stop();
+      if(e.cur == 7) $.fn.fullpage.stop();
+      if(e.cur == 8) $.fn.fullpage.start();
+      if(e.cur == 9) $.fn.fullpage.stop();
     }
   });
 </script>

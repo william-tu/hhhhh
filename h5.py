@@ -133,7 +133,7 @@ class User(db.Model):
 
     @staticmethod
     def count_user():
-        return len(User.query.all())
+        return len(User.query.all())+500
 
     def __repr__(self):
         return '<user %r>' % self.name
