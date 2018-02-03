@@ -102,10 +102,10 @@ $('#kanjia').on('click', function() {
     signature: sign.sign,
     // timestamp: sign.timestamp,
     // nonceStr: sign.nonceStr,
-    title: '衡阳市华耀碧桂园十里江湾营销中心',
-    desc: '衡阳市华耀碧桂园十里江湾营销中心邀您领取0元火车票',
+    // title: '衡阳市华耀碧桂园十里江湾营销中心',
+    // desc: '衡阳市华耀碧桂园十里江湾营销中心邀您领取0元火车票',
     link: 'http://' + location.host + userobj.share_url,
-    imgUrl: 'http://' + location.host + '/static/images/01/01.jpg',
+    // imgUrl: 'http://' + location.host + '/images/01/01.jpg',
   };
   wechat.wechatShare(shareData);
 })
@@ -123,21 +123,24 @@ $('.page-7 span').text(tianshu);
 
 // 微信分享
 var wechat = {
-  wechatConfig: function (config) {
-    wx.config({
-        debug: false,
-        appId: config.appId,
-        timestamp: config.timestamp,
-        nonceStr: config.nonceStr,
-        signature: config.signature,
-        jsApiList: config.jsApiList
-    });
-  },
+  // wechatConfig: function (config) {
+  //   wx.config({
+  //       debug: false,
+  //       appId: config.appId,
+  //       timestamp: config.timestamp,
+  //       nonceStr: config.nonceStr,
+  //       signature: config.signature,
+  //       jsApiList: config.jsApiList
+  //   });
+  // },
   wechatShare: function ($shareData) {
     var _default = {   
         debug: false,
         timestamp: timestamp,
         nonceStr: random_str,
+        title: '碧桂园助力“携爱回家”',
+        desc: '参与h5，好友助力赢取免费回家车票',
+        imgUrl: 'http://' + location.host + '/static/images/gongyong/share2.jpg',
         jsApiList: [
             'checkJsApi',
             'onMenuShareTimeline',
@@ -157,10 +160,10 @@ var wechat = {
       jsApiList: config.jsApiList
     });
     wx.ready(function () {
-      wx.onMenuShareAppMessage($shareData);
-      wx.onMenuShareTimeline($shareData);
-      wx.onMenuShareQQ($shareData);
-      wx.onMenuShareWeibo($shareData);
+      wx.onMenuShareAppMessage(config);
+      wx.onMenuShareTimeline(config);
+      wx.onMenuShareQQ(config);
+      wx.onMenuShareWeibo(config);
     });
   }
 }
@@ -188,14 +191,14 @@ $.ajax({
     shareData = {
       appId: sign.app_id,
       signature: sign.sign,
-      timestamp: timestamp,
-      nonceStr: random_str,
-      title: '衡阳市华耀碧桂园十里江湾营销中心',
-      desc: '衡阳市华耀碧桂园十里江湾营销中心邀您领取0元火车票',
+      // timestamp: timestamp,
+      // nonceStr: random_str,
+      // title: '碧桂园助力“携爱回家”',
+      // desc: '参与h5，好友助力赢取免费回家车票',
       link: 'http://' + location.host,
-      imgUrl: 'http://' + location.host + '/static/images/01/01.jpg',
+      
     };
-    wechat.wechatConfig(shareData);
+    wechat.wechatShare(shareData);
   },
   error: function(data){
     alert('网络状况不好，请刷新重试');
