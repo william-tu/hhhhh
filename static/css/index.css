@@ -121,7 +121,7 @@ body {
   margin: 1rem 0 4rem 0;
 }
 .item-6 {
-  margin-top: 6rem;
+  margin-top: 3rem;
 }
 .item-6 .subtitle,
 .item-6 .kuang {
@@ -145,6 +145,7 @@ body {
   margin: 1rem 0 2rem 0;
 }
 .item-8 .title {
+  margin: 5rem 0 1rem 0;
   position: relative;
   top: -20px;
 }
@@ -185,12 +186,28 @@ body {
 .item-8 .input input {
   background: #fff;
   border: 0;
-  width: 60%;
+  width: 65%;
   height: 34px;
   font-size: 1.2rem;
+  border-radius: 20px;
+  padding-left: 10px;
 }
 .item-8 .input select {
+  -webkit-appearance: none;
   font-size: 1.2rem;
+  background: white;
+  border: 0;
+  width: 32%;
+  color: #757575;
+  padding-left: 10px;
+  height: 34px;
+  margin-bottom: 1rem;
+}
+.item-8 .input #sheng {
+  border-radius: 30px 0 0 30px;
+}
+.item-8 .input #didian {
+  border-radius: 0 30px 30px 0;
 }
 .item-9 {
   margin-top: 2rem;
