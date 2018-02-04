@@ -114,6 +114,11 @@
             <div class="js-animate animated" data-animate="fadeInUp">
                 <img src="/static/images/06/xiaoxiaozi.png" alt="" width="80%">
             </div>
+            <div class="js-animate animated" data-animate="fadeInUp">
+              <img src="/static/images/06/miaoshu.png" alt="" style=" position: relative;
+              left: 50px;
+              top: 10px;" width="50%">
+            </div>
           </div>
         </div>
         <!-- <div class="page page-6-h">
@@ -143,7 +148,7 @@
               <img src="/static/images/gongyong/fengexian.png" alt="" width="70%">
             </div>
             <div class="subtitle js-animate animated" data-animate="fadeInUp">
-              <img src="/static/images/07/xiaozi.png" alt="" width="50%">
+              <img src="/static/images/07/xiaozi.png" alt="" width="40%">
             </div>
           </div>
         </div>
@@ -152,7 +157,7 @@
             <div class="huoche">
               <!-- <img src="/static/images/08/HENGYANG.png" alt="" width="95%"> -->
               <div class="dizhi" style="display: none;">
-               <!-- <span>远方</span>-->
+                <span>远方</span>
                 <br>
                 DIDIAN
               </div>
@@ -173,7 +178,9 @@
               </select>
               <!-- <input type="text" name="didian" id="didian" placeholder="请填写出发地" required><br><br> -->
               <!-- <button id="tijiao" class="js-animate animated infinite" data-animate="fadeInDown">v</button> -->
-              <img id="tijiao" src="/static/images/08/next.png" alt="" width="60%" style="margin-top: 30px;">
+              <img id="tijiao" src="/static/images/08/next.png" alt="" width="60%" style="margin-top: 10px;">
+              <br>
+              <img src="/static/images/08/guize.png" alt="" width="70%">
             </div>
           </div>
         </div>
@@ -222,7 +229,7 @@
               <div class="process-bai"></div>
               <div class="process-huang"></div>
               <div class="process-kuang" style="margin-left:25%">
-                <span class="one">&nbsp;现价240元</span>
+                <span class="one" style="margin: 5px 0 0 5px;">&nbsp;现价240元</span>
                 <img src="/static/images/10/kuang.png" alt="" width="60%"><br>
                 <img src="/static/images/10/quan.png" alt="" width="20%">
               </div>
@@ -255,7 +262,7 @@
 <script src="/static/js/zepto.fullpage.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="/static/js/index.js"></script>
-{% for message in get_flashed_messages() %}
+  {% for message in get_flashed_messages() %}
     <script type="text/javascript">
         var messages='{{ message }}';
         alert(messages);
