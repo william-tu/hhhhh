@@ -46,7 +46,10 @@ $('#tijiao').on('click', function(){
     },
     error: function(xhr, type){
       console.log('Ajax error!');
-      alert('网络状况不好，请刷新重试');
+      alert('异常？可能有以下错误：' +
+          '1：网络状况不好，请刷新重试;' +
+          '2：信息填写错误，请填写初始信息;' +
+'3：可能存在和您名字相同的用户，请您在名字后面加字母以解决;');
     },
   })
 });
